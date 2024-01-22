@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="CSS/mystyle.css">
+    <link rel="icon" href="/Icon.ico">
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous" defer></script>
+    <script src="JS/scriptVendedorproducto.js" defer></script>
+    <title>StVent-Productos</title>
+</head>
+
+<body>
+   
+    <div>
+        <nav class="navbar navbar-expand-lg  bg-black">
+            <div class="container-fluid">
+                <a class="navbar-brand text-light fs-5" href="#">StVent</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active text-warning mt-1 fs-6" aria-current="page" href="VendedorVender.html">Vender</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-warning mt-1 fs-6" href="VendedorCrearCliente.php">Crear Cliente</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-warning mt-1 fs-6" href="VendedorProductoBuscarCargarStock.html">Producto</a>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="navbar-nav">
+                    <li class="nav-item text-end">
+                        <a class="nav-link" href="../Controlador/Logout.php"><button class="btn btn-danger py-1" id="salir">Cerrar sesion</button></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <h1 class="text-center mt-3"></h1>
+   
+    <div class="row col-md-11">
+        <div class="col-md-8 m-b-4">
+                <div class="card bg-black text-light">
+                    <div class="card-header text-light">
+                        <h5>Vender a cliente n/a</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="input-group">
+                                <input class="form-control" type="search" id="autocompletadoBuscarCliente"
+                                    placeholder="Escribe aquí el producto..." aria-label="Search">
+                                <button class="input-group-text btn btn-outline-danger" type="button"><i class="bi bi-search"></i></button>
+                            
+                            
+                                <ul id="listaProductos" class="card position-absolute top-100 start-10">
+                                </ul>
+                                 <div id="smsResultado" class="card position-absolute d-none text-danger">No se encontraron resultados</div> 
+
+                            
+                            </div>
+
+                            <div class="table-responsive mx-auto">
+                                <div class="table-responsive mx-auto">
+                                    <table  class="table table-dark table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="ocultar-en-pantalla-xs ocultar-en-pantalla-sm ocultar-en-pantalla-md"
+                                                    scope="col">N</th>
+                                                <th class="ocultar-en-pantalla-xs ocultar-en-pantalla-sm ocultar-en-pantalla-md text-center"
+                                                    scope="col">Marca</th>
+                                                <th class="ocultar-en-pantalla-xs ocultar-en-pantalla-sm ocultar-en-pantalla-md text-center"
+                                                    scope="col">Descripción</th>
+                                                <th class="ocultar-en-pantalla-xs ocultar-en-pantalla-sm ocultar-en-pantalla-md text-center"
+                                                    scope="col">Precio</th>
+                                                <th class="ocultar-en-pantalla-xs ocultar-en-pantalla-sm ocultar-en-pantalla-md text-center"
+                                                    scope="col">Cantidad</th>
+                                                <th class="text-center" scope="col">Acciones</th>
+                                            </tr>
+                                            <tr id="idfilaProductoprincipal" class="d-none">
+                                                <td class="ocultar-en-pantalla-xs ocultar-en-pantalla-sm ocultar-en-pantalla-md" scope="row"></td>
+                                                <td class="ocultar-en-pantalla-xs ocultar-en-pantalla-sm ocultar-en-pantalla-md text-center" scope="col"></td>
+                                                <td class="text-center" scope="col"></td>
+                                                <td class="col-1 ocultar-en-pantalla-xs ocultar-en-pantalla-sm ocultar-en-pantalla-md text-center" 
+                                                id="idfilaPrecio" scope="col">
+                                                    <!-- si saco el td solucion el problema de reajuste
+                                                         de pagina pero no accedo a idfilaCantidadinput-->
+                                               
+                                                </td>
+                                                <td class="col-1 ocultar-en-pantalla-xs ocultar-en-pantalla-sm ocultar-en-pantalla-md text-center"
+                                                id="idfilaCantidad" scope="col">
+                                                    <input type="number" id="idfilaCantidadinput" class="form-control text-center" value="1"  min="1">
+                                                </td>
+
+                                                <td  class="col-1 ocultar-en-pantalla-sm ocultar-en-pantalla-md text-center"scope="col">
+                                                    <div class="btn-group" role="group" aria-label="Grupo botones">
+                                                        <button class="btn btn-primary btn-sm" data-btn-grupo="modificar-cliente">
+                                                            <i id="id_Agregar_producto_Tabla" class="bi bi-check-lg"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger btn-sm" data-btn-grupo="eliminar-cliente">
+                                                            <i id="id_Eliminar_producto_Tabla" class="bi bi-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tablaProductos">
+                                        </tbody>
+                                    </table>
+                            </div>
+                        </div>   
+                    </div>
+                </div>
+        </div>    
+   
+
+
+    <br>
+    <div id="iddivindicadores" class="fixed-bottom p-3 mb-2 bg-dark text-white">Indicador
+        <div class="btn-group btn-group-toggle" >
+            <label class="btn btn-light" id="idlabelventaverde">
+                
+            </label>
+            <label class="btn btn-dark" id="idlabelventarojo">
+                
+            </label>
+        </div>
+    </div>
+    
+      
+    
+
+</body>
+
+
+</html>
+
+

@@ -1,0 +1,22 @@
+/* al hacer la busqueda, se usa esta clase para ocultar los campos */
+tr.ocultar {
+  display: none;
+ }
+/* breakpoint xs */
+@media (max-width: 575px) {
+ .ocultar-en-pantalla-xs {
+  display:none;
+ }
+}
+/* breakpoint sm */
+@media (max-width: 767px) {
+ .ocultar-en-pantalla-sm {
+  display:none;
+ }
+}
+/* breakpoint md */
+@media (max-width: 991px) {
+ .ocultar-en-pantalla-md {
+  display:none;
+ }
+}
