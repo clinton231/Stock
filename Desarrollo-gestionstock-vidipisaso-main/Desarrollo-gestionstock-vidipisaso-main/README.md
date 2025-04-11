@@ -1,1 +1,1 @@
-# Desarrollo-gestionstock-vidipisaso
+Software Gestion de Stock Almacen
